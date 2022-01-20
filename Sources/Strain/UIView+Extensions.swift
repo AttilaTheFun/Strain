@@ -17,7 +17,7 @@ extension UIView {
      
      */
     @discardableResult
-    public func with(autolayout: Bool) -> UIView {
+    public func with(autolayout: Bool) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = !autolayout
         return self
     }

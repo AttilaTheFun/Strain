@@ -51,7 +51,7 @@ performance improvements that do not affect the public API.
 
 ## Author
 
-- Logan Shire ([@attilathefun](https://github.com/attilathefun))
+Logan Shire ([@attilathefun](https://github.com/attilathefun))
 
 ## License
 

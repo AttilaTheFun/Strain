@@ -6,6 +6,6 @@ final class StrainTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(Strain().text, "Hello, World!")
+        // XCTAssertEqual(Strain().text, "Hello, World!")
     }
 }

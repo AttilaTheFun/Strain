@@ -22,7 +22,7 @@ class MyViewController: UIViewController {
         self.subview.backgroundColor = .red
         self.view.addSubview(self.subview)
         self.subview.constrainCenter(to: self.view)
-        self.subview.constrain(edges: [.leading, .trailing], to: self.view)
+        self.subview.constrain(edges: [.left, .right], to: self.view)
         self.subview.constrain(aspectRatio: 16.0/9.0)
     }
 }

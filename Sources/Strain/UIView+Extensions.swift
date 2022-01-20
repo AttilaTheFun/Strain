@@ -1,5 +1,28 @@
 import UIKit
 
+// MARK: Autolayout
+
+extension UIView {
+    
+    /**
+     Sets the translatesAutoresizingMaskIntoConstraints value of the receiver to the appropriate value for autolayout enabled / disabled,
+     (i.e. false if autolayout is enabled, true otherwise), and then returns the receiver to allow for chaining.
+     
+     Usage:
+     ```
+     final class SomeView: UIView {
+        private let subview = UIView().with(autolayout: true)
+     }
+     ```
+     
+     */
+    @discardableResult
+    public func with(autolayout: Bool) -> UIView {
+        self.translatesAutoresizingMaskIntoConstraints = !autolayout
+        return self
+    }
+}
+
 // MARK: Width
 
 extension UIView {
@@ -244,6 +267,47 @@ extension UIView {
         }
         if edges.contains(.right) {
             constraints.append(self.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: -1 * offset))
+        }
+        constraints.forEach { $0.isActive = activate }
+        return constraints
+    }
+}
+
+// MARK: Margins
+
+extension UIView {
+
+    /**
+     Creates constraints between the given edges and the margins of the given view.
+     That view must either be a superview of the receiver, or a sibling in the hierarchy.
+     NOTE: While UIRectEdge and UIEdgeInsets have `left` and `right` values, these are used to create `leading` and `trailing` constraints.
+
+     - Parameters:
+       - edges: The edges to create constraints between the receiver and the view for (from their respective anchors).
+       - view: The view whose layout margins are used to create the constraints from the receiver to.
+       - activate: Whether to activate the constraints prior to returning them. Defaults to true.
+     - Returns: The array of constraints that were created.
+     */
+    @discardableResult
+    public func constrain(
+        edges: UIRectEdge = .all,
+        toMarginsOf view: UIView,
+        activate: Bool = true)
+        -> [NSLayoutConstraint]
+    {
+        let margins = view.layoutMarginsGuide
+        var constraints = [NSLayoutConstraint]()
+        if edges.contains(.top) {
+            constraints.append(self.topAnchor.constraint(equalTo: margins.topAnchor))
+        }
+        if edges.contains(.left) {
+            constraints.append(self.leadingAnchor.constraint(equalTo: margins.leadingAnchor))
+        }
+        if edges.contains(.bottom) {
+            constraints.append(self.bottomAnchor.constraint(equalTo: margins.bottomAnchor))
+        }
+        if edges.contains(.right) {
+            constraints.append(self.trailingAnchor.constraint(equalTo: margins.trailingAnchor))
         }
         constraints.forEach { $0.isActive = activate }
         return constraints

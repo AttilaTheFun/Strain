@@ -35,7 +35,7 @@ To add it to your project, either use Xcode's Package Dependencies feature,
 or add the following to your Package.swift file:
 
 ```swift
-    .package(url: "https://github.com/AttilaTheFun/Strain", .upToNextMinor(from: "0.1.0")),
+    .package(url: "https://github.com/AttilaTheFun/Strain", .upToNextMinor(from: "0.2.0")),
 ```
 
 ## Versioning
